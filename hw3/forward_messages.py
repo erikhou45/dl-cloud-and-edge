@@ -3,11 +3,11 @@ import paho.mqtt.client as mqtt
 
 LOCAL_MQTT_HOST="mosquitto"
 LOCAL_MQTT_PORT=1883
-LOCAL_MQTT_TOPIC="_local/face"
+LOCAL_MQTT_TOPIC="edge/face"
 
 REMOTE_MQTT_HOST="169.44.156.200"
 REMOTE_MQTT_PORT=1883
-REMOTE_MQTT_TOPIC="_remote/face"
+REMOTE_MQTT_TOPIC="cloud/face"
 
 def on_connect_local(client, userdata, flags, rc):
         print("connected to local broker with rc: " + str(rc))
@@ -24,11 +24,11 @@ def on_message(client,userdata, msg):
     print("Unexpected error:", sys.exc_info()[0])
 
 remote_mqttclient = mqtt.Client()
-remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 60)
+remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 600)
 
 local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
-local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
+local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 600)
 local_mqttclient.on_message = on_message
 
 

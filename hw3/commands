@@ -1,12 +1,12 @@
 docker build -t face_detector:1.00 -f Dockerfile.detect .
 
-docker run -e DISPLAY=$DISPLAY --privileged --network hw03 -v /home/ehou/w251/homework/hw3:/tmp --rm -it face_detector:1.00 bash
+docker run -e DISPLAY=$DISPLAY --privileged --network hw03 -v /home/ehou/w251/w251-assignments/hw3:/tmp --rm -it face_detector:1.00 bash
 
 docker build -t forwarder:1.00 -f Dockerfile.forwarder .
 
 docker run --name forwarder --network hw03 -it forwarder:1.00 sh
 
-docker run --name forwarder --network hw03 -v /home/ehou/w251/homework/hw3:/tmp --rm -it forwarder:1.00 sh
+docker run --name forwarder --network hw03 -v /home/ehou/w251/w251-assignments/hw3:/tmp --rm -it forwarder:1.00 sh
 
 docker build -t broker:1.00 -f Dockerfile.broker .
 
