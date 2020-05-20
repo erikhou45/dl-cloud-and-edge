@@ -1,0 +1,15 @@
+docker build -t face_detector:1.00 -f Dockerfile.detect .
+
+docker run -e DISPLAY=$DISPLAY --privileged --network hw03 -v /home/ehou/w251/homework/hw3:/tmp --rm -it face_detector:1.00 bash
+
+docker build -t forwarder:1.00 -f Dockerfile.forwarder .
+
+docker run --name forwarder --network hw03 -it forwarder:1.00 sh
+
+docker run --name forwarder --network hw03 -v /home/ehou/w251/homework/hw3:/tmp --rm -it forwarder:1.00 sh
+
+docker build -t broker:1.00 -f Dockerfile.broker .
+
+docker run -dit --name mosquitto --network hw03 -p 1883:1883 broker:1.00
+
+docker run --network hw03 -v /mnt/mybucket:/tmp --rm -it erikhou/hw3_image_processor:1.00 bash

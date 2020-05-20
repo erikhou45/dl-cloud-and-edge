@@ -1,0 +1,8 @@
+FROM arm64v8/alpine:latest
+
+# Install mosquitto
+RUN apk update && apk add mosquitto
+
+# Run the broker when container is spun up
+CMD sh && user/sbin/mosquitto
+

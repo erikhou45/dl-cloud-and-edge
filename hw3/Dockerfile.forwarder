@@ -1,0 +1,8 @@
+FROM arm64v8/alpine:latest
+
+# install mosquitto-clients
+RUN apk  update && apk add mosquitto-clients
+
+RUN apk add python3
+
+RUN pip3 install paho-mqtt
