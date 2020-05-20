@@ -7,7 +7,9 @@ The requested overall application flow / architecture is like this ![this](hw03.
 
 ## Spin up a VSI
 Use the command below, spin up a ubuntu instance on the IBM cloud
-`ibmcloud sl vs create --hostname=storage --domain=w251.test --cpu=2 --memory=4096 --datacenter=sjc03 --os=UBUNTU_18_64 --san --disk=25 --billing=hourly --key=<my ssh key ID>`
+```
+ibmcloud sl vs create --hostname=storage --domain=w251.test --cpu=2 --memory=4096 --datacenter=sjc03 --os=UBUNTU_18_64 --san --disk=25 --billing=hourly --key=<my ssh key ID>
+```
 
 ## Mount the IBM Cloud Object Storage bucket onto the cloud VSI
 Use the commands below, mount a bucket in the IBM COS onto a directory in the VSI
@@ -23,8 +25,9 @@ sudo s3fs <bucketname> /mnt/mybucket -o passwd_file=$HOME/.cos_creds -o sigv2 -o
 ``` 
 ## Create docker network bridge in Jetson TX2 and the cloud VSI
 Use the command below, create a network bridge in both Jetson TX2 and the cloud VSI respectively
-`docker network create --driver bridge hw03`
-
+```
+docker network create --driver bridge hw03
+```
 ## Spin up a MQTT broker in  Jetson TX2 and the Cloud VSI
 Use the commands below, create a MQTT broker with an alpine linux base in TX2 and cloud VSI respectively
 ```
@@ -35,15 +38,23 @@ apk update && apk add mosquitto
 
 ## Spin up a image processing container with MQTT client in the cloud VSI
 In the cloud VSI, spin up a container build by using the [Dockerfile.processor](https://github.com/erikhou45/w251-assignments/blob/master/hw3/Dockerfile.processor)
-`docker run --network hw03 -v /mnt/mybucket:/tmp --rm -it erikhou/hw3_image_processor:1.00 bash`
+```
+docker run --network hw03 -v /mnt/mybucket:/tmp --rm -it erikhou/hw3_image_processor:1.00 bash
+```
 Run the python script, [process_image.py](https://github.com/erikhou45/w251-assignments/blob/master/hw3/process_image.py) to subscribe topic, cloud/face at the MQTT broker on the cloud and get ready to process any incoming image.
-`python3 process_image.py`
+```
+python3 process_image.py
+```
 
 ## Spin up a forwarder container at Jetson TX2
 At TX2, use the [Dockerfile.forwarder](https://github.com/erikhou45/w251-assignments/blob/master/hw3/Dockerfile.forwarder) to build a docker image for the MQTT forwarder
-`docker build -t forwarder:1.00 -f Dockerfile.forwarder .`
+```
+docker build -t forwarder:1.00 -f Dockerfile.forwarder .
+```
 Run a forwarder container that relays face images from TX2 broker at the edge to VSI broker on the cloud
-`docker run --name forwarder --network hw03 -v /home/ehou/w251/w251-assignments/hw3:/tmp --rm -it forwarder:1.00 sh`
+```
+docker run --name forwarder --network hw03 -v /home/ehou/w251/w251-assignments/hw3:/tmp --rm -it forwarder:1.00 sh
+```
 Run the python script, [forward_messages.py](https://github.com/erikhou45/w251-assignments/blob/master/hw3/forward_messages.py) that will forward the messages automatically
 ```
 cd /tmp
@@ -53,14 +64,19 @@ python3 forward_messages.py
 ## Spin up a face detection container with OpenCV and MQTT client in Jetson TX2
 
 Use the [Dockerfile.detector](https://github.com/erikhou45/w251-assignments/blob/master/hw3/Dockerfile.detector) to build a docker image for the face detection container
-`docker build -t face_detector:1.00 -f Dockerfile.detect .`
+```
+docker build -t face_detector:1.00 -f Dockerfile.detect .
+```
 Spin up the container
-`docker run -e DISPLAY=$DISPLAY --privileged --network hw03 -v /home/ehou/w251/w251-assignments/hw3:/tmp --rm -it face_detector:1.00 bash`
+```
+docker run -e DISPLAY=$DISPLAY --privileged --network hw03 -v /home/ehou/w251/w251-assignments/hw3:/tmp --rm -it face_detector:1.00 bash
+```
 Run the python script, [detect_face.py](https://github.com/erikhou45/w251-assignments/blob/master/hw3/detect_face.py) to automatically detect faces in the video stream, crop the face, and send it as binary to the local broker
-`python3 detect_face.py`
+```
+python3 detect_face.py
+```
 
 ## Capture faces
 Now we can either have someone or put a picture with a human face in front of the camera and their faces will be captured and stored on the cloud storage automatically
 
 ## Tear down the bucket and delete VSI 
-
