@@ -3,13 +3,18 @@
 We are asked to build a pipeline that will:
 Capture faces in a video stream coming from the edge in real time, transmit them to the cloud in real time, and save these faces in the cloud for long term storage. We are requested to use MQTT as the messaging fabric and OpenCV for the face detector component.
 
-The requested overall application flow / architecture is like this ![this](hw03.png). The homework is implemented in the following steps:
+The requested overall application flow / architecture is like ![this](hw03.png). The homework is implemented in the following steps:
+
+Since the environment in which we are capturing faces for this homework has relatively good WiFi connection, our camera can capture many frames per second (it is expected to have the same face captured many times), and missing a few frames isn't critical for our use, we will use QoS=0 as the setting for our MQTT connection just for better efficiency.
+
+Another setting we have for the MQTT fabric is the topics, at the edge we have `egde/face` as the topic and on the cloud, we have `cloud/face` as the topic. This way we have a good distinction between topics used at the two different steps of our messaging system.
 
 ## Spin up a VSI
 Use the command below, spin up a ubuntu instance on the IBM cloud
 ```
 ibmcloud sl vs create --hostname=storage --domain=w251.test --cpu=2 --memory=4096 --datacenter=sjc03 --os=UBUNTU_18_64 --san --disk=25 --billing=hourly --key=<my ssh key ID>
 ```
+Install docker on the VSI
 
 ## Mount the IBM Cloud Object Storage bucket onto the cloud VSI
 Use the commands below, mount a bucket in the IBM COS onto a directory in the VSI
