@@ -1,6 +1,6 @@
 # Homework 4
 
-# Part 1
+## Part 1
 
 The first part of homework 4 is to submit the answers to the following questions about ConvenetJS MNIST demo
 
@@ -32,3 +32,6 @@ Increase the batch size. What impact does it have?
 What is the best accuracy you can achieve? Are you over 99%? 99.5%?
 Over 99.5% in some rounds after lowering the filter size.
 
+## Part 2
+
+Please see [w251_homework04.html](https://github.com/erikhou45/w251-assignments/blob/master/hw4/w251_homework04.html)
