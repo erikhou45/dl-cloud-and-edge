@@ -1,0 +1,38 @@
+What is TensorFlow? Which company is the leading contributor to TensorFlow?
+* TensorFlow is a deep learning framework. Google is the leading contributor to TensorFlow.
+
+What is TensorRT? How is it different from TensorFlow?
+* TensorRT is an SDK that about deep learning inference optimizer that can accelerate the performance of deep learning models trained in all major frameworks. Whereas, TensorFlow is a deep learning framework that focuses more on model building and training not acceleration.
+
+What is ImageNet? How many images does it contain? How many classes?
+* ImageNet is a large image dataset designed for visual object recognition research. It contains more than 14 million images and more than 20,000 classes.
+
+Please research and explain the differences between MobileNet and GoogleNet (Inception) architectures.
+* Compared with GoogleNet, MobileNet is light weight and has fewer layers and parameters, which makes it suitable for running deep learning applications on edge devices where power and resources are restricted.
+
+In your own words, what is a bottleneck?
+* Bottleneck refers to the layer in deep learning network that is right before the final output layer that does classification work. It is called bottleneck because the information at that layer is summarized from all the processes of the layers before it; therefore, it is thought to be a COMPACT representation.
+
+How is a bottleneck different from the concept of layer freezing?
+* When bottleneck is used, the output up until the bottleneck layer are cached and reused. They are not calculated everytime when each image is reused for training. Whereas, layer freezing only refers to not letting the gradients flow back to the frozen layer and hold the weights constant.
+
+In the TF1 lab, you trained the last layer (all the previous layers retain their already-trained state). Explain how the lab used the previous layers (where did they come from? how were they used in the process?)
+* For each image used in training, the output of the layer right before the last one is calculated and cached. Those layers were pretrained with a large amount of data. Whenever the image is used in training again, the cached output will be used directly instead of calculating from the beginning of the model from lower layer.
+
+How does a low --learning_rate (step 7 of TF1) value (like 0.005) affect the precision? How much longer does training take?
+* It did improve accuracy. However, it didn't change the training time since the model was also trained for 4,000 steps.
+
+How about a --learning_rate (step 7 of TF1) of 1.0? Is the precision still good enough to produce a usable graph?
+* The validation accuracy still has 85%, so I'd say it is still good enough.
+
+For step 8, you can use any images you like. Pictures of food, people, or animals work well. You can even use ImageNet images. How accurate was your model? Were you able to train it using a few images, or did you need a lot?
+* I chose images of different balls (tennis, basketball, soccer, softball). It seems that the model is very good at predicting which ball is in the picture by ignoring the color of the ball. It could still correctly categorize a picture even when the picture used in testing contains a yellow soccer (tennis and softball are both yellow and there is no yellow soccer in the training set). The software suggest at least twenty pictures per category for training so when randomly put pictures into train, val and test sets, we wouldn't end up having an empty set that causes error. Twenty per category worked well for my use case.
+
+Run the TF1 script on the CPU (see instructions above) How does the training time compare to the default network training (section 4)? Why?
+* Supprisingly, it didn't take much longer (17 mins for CPU and 11 mins for GPU). Probably because of the use of bottleneck and the light-weight model. Therefore, the computation remains fairly light.
+
+Try the training again, but this time do export ARCHITECTURE="inception_v3" Are CPU and GPU training times different?
+* I noticed when using inception_v3, it took a lot longer to generate the bottleneck compared to MobileNet. The training time on TensorBoard for GPU training is 21 mins and 1hr for CPU.
+
+Given the hints under the notes section, if we trained Inception_v3, what do we need to pass to replace ??? below to the label_image script? Can we also glean the answer from examining TensorBoard?
+* --input_layer=299 --input_height=299 --input_width="Mul"
