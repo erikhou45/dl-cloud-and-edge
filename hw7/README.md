@@ -1,5 +1,5 @@
 Describe your solution in detail. What neural network did you use? What dataset was it trained on? What accuracy does it achieve?
-* My solution is by swapping out the cv2.CascadeClassifier in hw3 with [Tensorflow Face Detector]((https://github.com/yeephycho/tensorflow-face-detection). It is trained by [WIDERFACE dataset](http://shuoyang1213.me/WIDERFACE/).
+* My solution is by swapping out the cv2.CascadeClassifier in hw3 with [Tensorflow Face Detector](https://github.com/yeephycho/tensorflow-face-detection). It is trained by [WIDERFACE dataset](http://shuoyang1213.me/WIDERFACE/).
 
 Does it achieve reasonable accuracy in your empirical tests? Would you use this solution to develop a robust, production-grade system?
 * Yes, the model works well. It can detect faces even when they are blurry. 
