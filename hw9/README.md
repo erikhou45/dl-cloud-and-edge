@@ -32,13 +32,13 @@
 > Sinec we are training a machine translation model, the training set contains two files: a source file in English and a target file in German. The source file in English has 4,524,868 lines and is 915 MB. The target file has the same number of lines (since each line in source has to have a corresponding line in the target file) and is 976 MB.
 
 * What are the files that a TF checkpoint is comprised of?
-Each checkpoint contains three files: an index file, a metadata file and a file with all the parameters.
+> Each checkpoint contains three files: an index file, a metadata file and a file with all the parameters.
 
 * How big is your resulting model checkpoint (mb)?
-The size of three files combined is 864 mb.
+> The size of three files combined is 864 mb.
 
 * Remember the definition of a "step". How long did an average step take?
-One step means the complete process of a batch. Since it takes about 22 hours and 12 minutes to train 50,000 steps, each step takes about 1.6 seconds.
+> One step means the complete process of a batch. Since it takes about 22 hours and 12 minutes to train 50,000 steps, each step takes about 1.6 seconds.
 
 * How does that correlate with the observed network utilization between nodes?
-When monitoring the network, we see constant network traffic. Since the gradients need to be updated at the end of each step, and each step takes about 1.6 seconds, we know that the nodes would have to communicate roughly every 1.6 seconds. For nmon, the interval for stats refresh is 2 seconds. Since the nodes need to communicate more often then the refresh interval of the nmon dashboard, constant network traffic is observed.
+> When monitoring the network, we see constant network traffic. Since the gradients need to be updated at the end of each step, and each step takes about 1.6 seconds, we know that the nodes would have to communicate roughly every 1.6 seconds. For nmon, the interval for stats refresh is 2 seconds. Since the nodes need to communicate more often then the refresh interval of the nmon dashboard, constant network traffic is observed.
