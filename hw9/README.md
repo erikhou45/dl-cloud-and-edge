@@ -4,9 +4,9 @@
 [nohup.out](https://github.com/erikhou45/w251-assignments/blob/master/hw9/nohup.out)
 
 ## Screenshots
-![Eval BLEU Score](eval_bleu_score.png)
-![Eval Loss](eval_loss.png)
-![Learning Rate](learning_rate.png)
+![Eval BLEU Score](eval_bleu_score.PNG)
+![Eval Loss](eval_loss.PNG)
+![Learning Rate](learning_rate.PNG)
 
 ## Questions
 
