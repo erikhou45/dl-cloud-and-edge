@@ -2,9 +2,13 @@
 
 ## Part 1
 * In the time allowed, how many images did you annotate?
+> 152
 * Home many instances of the Millennium Falcon did you annotate? How many TIE Fighters?
+> 120 Tie Fighters and 105 Millennium Falcon.
 * Based on this experience, how would you handle the annotation of large image data set?
+> Since the quality of data is very important, annotation tools are necessary to make sure the coordinattes of the annotation are precise and the output file of annotations doesn't have any typo or formating errors. 
 * Think about image augmentation? How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations?
+> I think maybe the annotation could just be programmatically transformed from the annotation of the original image as the original image is being transformed.
 
 ## Part 2
 
