@@ -28,7 +28,7 @@ Three different sets of parameters were attempted for this assignment and the li
 ## Questions
 
 1. What parameters did you change?
-> I tried to changed the number of nodes in the dense layers, the learning rate and the epsilon value.
+> I tried to changed the number of nodes in the dense layers, the learning rate and the epsilon decay value.
 2. What values did you try?
 > Learning Rate: I tried 0.001, 0.003, 0.005, 0.007.
 > Nodes in the dense layers: (200, 100) and (150,75).
