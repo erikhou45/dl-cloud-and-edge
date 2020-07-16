@@ -1,7 +1,8 @@
 # Homework 11
 
 ## Videos
-Three different sets of parameters were attempted for this assignment and the links to the training and testing videos are below:
+Six sets of parameters were attempted. Three of the sets of parameters with completed training:
+(All of the training and testing videos were uploaded but I sampled some accroding to the homework instrcutions and linked below)
 
 1. dense layer 1: 200 nodes, dense layer 2: 100 nodes. Everything else is default:  
 > Initial training: http://s3.us-east.cloud-object-storage.appdomain.cloud/erik-w251-hw3-bucket/videos_200_100/episode0.mp4
