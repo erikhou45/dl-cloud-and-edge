@@ -5,10 +5,6 @@ Capture faces in a video stream coming from the edge in real time, transmit them
 
 The requested overall application flow / architecture is like ![this](hw03.png). The homework is implemented in the following steps:
 
-Since the environment in which we are capturing faces for this homework has relatively good WiFi connection, our camera can capture many frames per second (it is expected to have the same face captured many times), and missing a few frames isn't critical for our use, we will use QoS=0 as the setting for our MQTT connection just for better efficiency.
-
-Another setting we have for the MQTT fabric is the topics, at the edge we have `egde/face` as the topic and on the cloud, we have `cloud/face` as the topic. This way we have a good distinction between topics used at the two different steps of our messaging system.
-
 ## Spin up a VSI
 Use the command below, spin up a ubuntu instance on the IBM cloud
 ```
@@ -85,3 +81,9 @@ python3 detect_face.py
 Now we can either have someone or put a picture with a human face in front of the camera and their faces will be captured and stored on the cloud storage automatically
 
 ## Tear down the bucket and delete VSI 
+
+## Additional Notes
+### About MQTT configuration
+Since the environment in which we are capturing faces for this homework has relatively good WiFi connection, our camera can capture many frames per second (it is expected to have the same face captured many times), and missing a few frames isn't critical for our use, we will use QoS=0 as the setting for our MQTT connection just for better efficiency.
+
+Another setting we have for the MQTT fabric is the topics, at the edge we have `egde/face` as the topic and on the cloud, we have `cloud/face` as the topic. This way we have a good distinction between topics used at the two different steps of our messaging system.
