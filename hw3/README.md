@@ -1,6 +1,6 @@
 # Homework 3
 
-We are asked to build a pipeline that will:
+In this mini-project, I built a pipeline that will:
 Capture faces in a video stream coming from the edge in real time, transmit them to the cloud in real time, and save these faces in the cloud for long term storage. We are requested to use MQTT as the messaging fabric and OpenCV for the face detector component.
 
 The requested overall application flow / architecture is like ![this](hw03.png). The homework is implemented in the following steps:
