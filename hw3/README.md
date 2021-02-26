@@ -1,4 +1,4 @@
-# Homework 3
+# Face Detection and Storage Pipeline
 
 In this mini-project, I built a pipeline that will:
 Capture faces in a video stream coming from the edge in real time, transmit them to the cloud in real time, and save these faces in the cloud for long term storage. We are requested to use MQTT as the messaging fabric and OpenCV for the face detector component.
